@@ -1,0 +1,36 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>Kanban Board</h1>
+
+    <div class="add-column">
+      <input
+        type="text"
+        [(ngModel)]="newColumnTitle"
+        placeholder="New column name..."
+        (keyup.enter)="addColumn()"
+        class="input-field"
+      />
+
+      <button class="btn btn-primary" (click)="addColumn()">
+        + Add Column
+      </button>
+    </div>
+  </header>
+
+  <main class="board-container">
+    <app-board
+      [board]="board$ | async"
+      (editTask)="onEditTask($event)"
+    ></app-board>
+  </main>
+
+  <div *ngIf="editingTask" class="modal-overlay" (click)="onCancelEdit()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-task-form
+        [task]="editingTask"
+        (onSave)="onSaveTask($event)"
+        (onCancel)="onCancelEdit()"
+      ></app-task-form>
+    </div>
+  </div>
+</div>

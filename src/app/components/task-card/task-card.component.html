@@ -1,0 +1,7 @@
+<div class="task-card">
+  <div class="task-header">
+    <h3 class="task-title">{{ task.title }}</h3>
+    <button class="btn-icon btn-remove" (click)="removeTask()" title="Delete task">×</button>
+  </div>
+  <p *ngIf="task.description" class="task-description">{{ task.description }}</p>
+</div>
